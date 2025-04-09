@@ -7,6 +7,7 @@ import { ART } from "../../assets/ART_DATA";
 import ArtPieceItem from "../../components/art-piece/art-piece-item.jsx";
 import Panel from "../../components/panel/panel-component.jsx";
 import styles from "../../routes/category/category-component.module.css"
+import ImageGallery from "./imageGallery";
 
 export default function Category() {
   
@@ -103,57 +104,65 @@ export default function Category() {
 
 
   
-  return (
-     <div className = {styles.ComponentGui}>
-     <div className = {styles.PageContainer}>
-    <h1 className = {styles.Banner}>Image Gallery </h1>
-     <h2 className = {styles.ArtworkTitle} >Would you like to rate these works?</h2>
-      <div></div>
+  return(
+
+    <div>
+      <ImageGallery setShowPanel={setShowPanel} showPanel = {showPanel} arrayWithStars = {arrayWithStars} artPiecesOfCategoryArray = { artPiecesOfCategoryArray} updateStars ={updateStars}/>
+    </div>
+  );
+
+}
+
+//      <div className = {styles.ComponentGui}>
+//      <div className = {styles.PageContainer}>
+//     <h1 className = {styles.Banner}>Image Gallery </h1>
+//      <h2 className = {styles.ArtworkTitle} >Would you like to rate these works?</h2>
+//       <div></div>
       
       
-      <div className = {styles.ButtonContainer} >
-        <button className = {styles.ButtonShow}
-          onClick={() => {
-            setShowPanel((showPanel) => !showPanel);
-          }}
+//       <div className = {styles.ButtonContainer} >
+//         <button className = {styles.ButtonShow}
+//           onClick={() => {
+//             setShowPanel((showPanel) => !showPanel);
+//           }}
           
-          >
+//           >
 
 
 
             
-            {showPanel ? "Hide Panel" : "Show Panel"}
-        </button>
-      </div>
+//             {showPanel ? "Hide Panel" : "Show Panel"}
+//         </button>
+//       </div>
 
 
           
-      <div className = {styles.ArtworkLink}>
-      <a href="/">Home</a>
-      </div>
+//       <div className = {styles.ArtworkLink}>
+//       <a href="/">Home</a>
+//       </div>
 
       
-      <div className = {styles.UpperGrid}>
-        {showPanel && <Panel items = {arrayWithStars}/>}
-      </div>
+//       <div className = {styles.UpperGrid}>
+//         {showPanel && <Panel items = {arrayWithStars}/>}
+//       </div>
 
 
-       <div className = {styles.GridContainer}> 
-      <div className = {styles.Grid} >
-      {artPiecesOfCategoryArray.map((item, index) => (
-          //<ArtPieceItem onWidthChanged = {handleMessage} key = {index} item = {item} updateStars = {updateStars}/>
-          <ArtPieceItem  key = {index} item = {item} updateStars = {updateStars}/>
-          ))
-      }
-      </div>
-      </div>
+//        <div className = {styles.GridContainer}> 
+//       <div className = {styles.Grid} >
+//       {artPiecesOfCategoryArray.map((item, index) => (
+//           //<ArtPieceItem onWidthChanged = {handleMessage} key = {index} item = {item} updateStars = {updateStars}/>
+//           <ArtPieceItem  key = {index} item = {item} updateStars = {updateStars}/>
+//           ))
+//       }
+//       </div>
+//       </div>
        
 
       
-    </div>
+//     </div>
  
- </div>
+//  </div>
+  
 
-)
-}
+
  

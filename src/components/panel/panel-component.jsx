@@ -1,7 +1,7 @@
 import GalleryCard from "../../routes/category/GalleryCard/GalleryCard.jsx";
 //import { DropDown } from "./panel-styles";
 import React, { useState, useEffect } from "react";
-import styles from "../../../src/script.module.css"
+import styles from "./panel-component.module.css"
 
 const Panel = ({ items }) => {
   let amountOfStars = "";
@@ -18,6 +18,7 @@ const Panel = ({ items }) => {
             imageUrl={item.imageUrl}
             title={item.name}
             price={`$${item.price}.00`}
+            stars = {item.stars}
           />
           
         ))}

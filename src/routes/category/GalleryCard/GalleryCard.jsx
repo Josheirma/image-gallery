@@ -2,7 +2,7 @@ import React from "react";
 //import styles from "./GalleryCard.module.css";
 import styles from "./GalleryCard.module.css"
 
-export default function GalleryCard({ title, imageUrl, starsLabel, price, key }) {
+export default function GalleryCard({ key, imageUrl, title, price, stars }) {
   return (
     <div className={styles.Text}>
        <div key={key}>
@@ -13,7 +13,7 @@ export default function GalleryCard({ title, imageUrl, starsLabel, price, key })
       </div>
       
       <p>{price}</p>
-      <section>{starsLabel}</section>
+      <section>{stars}</section>
       <div>----</div>
     </div>
     </div>

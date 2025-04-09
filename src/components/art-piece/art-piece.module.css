@@ -25,6 +25,19 @@
                 justify-content: center; 
                 align-items: center; 
     }
+
+    
+    input{
+        transform: scale(4.0);
+        width:.7rem;
+        height:1.25rem;
+        margin:1.25rem;
+        margin-bottom: 0rem;
+        
+        
+        
+        
+    }
     
 
 
