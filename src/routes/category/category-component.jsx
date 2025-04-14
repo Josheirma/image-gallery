@@ -1,6 +1,7 @@
 
-// worked on max width for site: 4000k, works besides checkboxes, and centering.  Broke other things while doing this, shouldn't take very long to fix.  look at width and height functionality and decide if it is still needed.
 ////////
+// 4000k center it, waiting on tutor, do I nees to rewrite category component as its own component - imageGallery.jsx?
+
 import { React, useState, useEffect, useMemo} from "react";
 import { useParams } from "react-router-dom";
 import { ART } from "../../assets/ART_DATA";
