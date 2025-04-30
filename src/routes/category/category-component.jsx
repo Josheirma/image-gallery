@@ -1,17 +1,14 @@
-
-////////
+/////////
 // 4000k center it, waiting on tutor, do I nees to rewrite category component as its own component - imageGallery.jsx?
 
-import { React, useState, useEffect, useMemo} from "react";
+import { React, useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { ART } from "../../assets/ART_DATA";
 import ArtPieceItem from "../../components/art-piece/art-piece-item.jsx";
 import Panel from "../../components/panel/panel-component.jsx";
-import styles from "../../routes/category/category-component.module.css"
+import styles from "../../routes/category/category-component.module.css";
 
 export default function Category() {
-  
- 
   let [showPanel, setShowPanel] = useState(false);
   const route = useParams();
   let imageCategoryToShow = route.category;
@@ -19,20 +16,19 @@ export default function Category() {
   //let [products, setProducts] = useState(ART);
 
   const [products, setProducts] = useState(() => {
-    const storedValue = localStorage.getItem('products');
+    const storedValue = localStorage.getItem("products");
     return storedValue !== null ? JSON.parse(storedValue) : ART;
   });
 
-  
   //MEMOIZE  - only if products or imagecate...
-  let artPiecesOfCategoryArray = useMemo( () => {
-    return products.filter((element) => element.category === imageCategoryToShow
+  let artPiecesOfCategoryArray = useMemo(() => {
+    return products.filter(
+      (element) => element.category === imageCategoryToShow
     );
-  
-  } , [products, imageCategoryToShow])
- 
-  let arrayWithStars  = products.filter(
-    (element) => element.amountStarsNumber !==  0
+  }, [products, imageCategoryToShow]);
+
+  let arrayWithStars = products.filter(
+    (element) => element.amountStarsNumber !== 0
   );
 
   //Old version, mutates...
@@ -45,7 +41,7 @@ export default function Category() {
   //       } else {
   //         artPieces.amountStarsNumber = amtStars;
   //        if(amtStars === 1){
-          
+
   //           artPieces.amtstars = "One Check"
   //         }
   //         if(amtStars === 2){
@@ -58,12 +54,12 @@ export default function Category() {
   //           artPieces.amtstars = "Four Checks"
   //         }
   //       }
-      
+
   //     }
   //     return(artPieces)
   //   });
   //   setProducts(updatedarrayOfProducts);
-   
+
   //     localStorage.setItem(`products`, JSON.stringify(updatedarrayOfProducts));
   // };
 
@@ -71,90 +67,72 @@ export default function Category() {
     // Create a new array with the updated products
     const updatedArrayOfProducts = products.map((artPiece) => {
       if (artPiece.id !== id) return artPiece; // Return unchanged item if not the target
-  
+
       // If the amountStarsNumber is the same as amtStars, reset to 0 (like toggle)
       const isSame = artPiece.amountStarsNumber === amtStars;
       const newAmountStarsNumber = isSame ? 0 : amtStars;
-  
+
       // Map numeric stars to string labels
       const starsLabelMap = {
         0: "none",
         1: "One Check",
         2: "Two Checks",
         3: "Three Checks",
-        4: "Four Checks"
+        4: "Four Checks",
       };
-  
+
       // Return a new object (avoid mutation)
       return {
         ...artPiece,
         amountStarsNumber: newAmountStarsNumber,
-        amtstars: starsLabelMap[newAmountStarsNumber] // Update amtstars
+        amtstars: starsLabelMap[newAmountStarsNumber], // Update amtstars
       };
     });
-  
+
     // Update state with the new array
     setProducts(updatedArrayOfProducts);
-  
+
     // Optionally update localStorage
     localStorage.setItem("products", JSON.stringify(updatedArrayOfProducts));
   };
 
-
-
-
-  
   return (
-     <div className = {styles.ComponentGui}>
-     <div className = {styles.PageContainer}>
-    <h1 className = {styles.Banner}>Image Gallery </h1>
-     <h2 className = {styles.ArtworkTitle} >Would you like to rate these works?</h2>
-      <div></div>
-      
-      
-      <div className = {styles.ButtonContainer} >
-        <button className = {styles.ButtonShow}
-          onClick={() => {
-            setShowPanel((showPanel) => !showPanel);
-          }}
-          
+    <div className={styles.ComponentGui}>
+      <div className={styles.PageContainer}>
+        <h1 className={styles.Banner}>Image Gallery </h1>
+        <h2 className={styles.ArtworkTitle}>
+          Would you like to rate these works?
+        </h2>
+        <div></div>
+
+        <div className={styles.ButtonContainer}>
+          <button
+            className={styles.ButtonShow}
+            onClick={() => {
+              setShowPanel((showPanel) => !showPanel);
+            }}
           >
-
-
-
-            
             {showPanel ? "Hide Panel" : "Show Panel"}
-        </button>
+          </button>
+        </div>
+
+        <div className={styles.ArtworkLink}>
+          <a href="/">Home</a>
+        </div>
+
+        <div className={styles.UpperGrid}>
+          {showPanel && <Panel items={arrayWithStars} />}
+        </div>
+
+        <div className={styles.GridContainer}>
+          <div className={styles.Grid}>
+            {artPiecesOfCategoryArray.map((item, index) => (
+              //<ArtPieceItem onWidthChanged = {handleMessage} key = {index} item = {item} updateStars = {updateStars}/>
+              <ArtPieceItem key={index} item={item} updateStars={updateStars} />
+            ))}
+          </div>
+        </div>
       </div>
-
-
-          
-      <div className = {styles.ArtworkLink}>
-      <a href="/">Home</a>
-      </div>
-
-      
-      <div className = {styles.UpperGrid}>
-        {showPanel && <Panel items = {arrayWithStars}/>}
-      </div>
-
-
-       <div className = {styles.GridContainer}> 
-      <div className = {styles.Grid} >
-      {artPiecesOfCategoryArray.map((item, index) => (
-          //<ArtPieceItem onWidthChanged = {handleMessage} key = {index} item = {item} updateStars = {updateStars}/>
-          <ArtPieceItem  key = {index} item = {item} updateStars = {updateStars}/>
-          ))
-      }
-      </div>
-      </div>
-       
-
-      
     </div>
- 
- </div>
-
-)
+  );
 }
- 
