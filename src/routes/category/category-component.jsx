@@ -1,4 +1,4 @@
-/////////
+///////////
 // 4000k center it, waiting on tutor, do I nees to rewrite category component as its own component - imageGallery.jsx?
 
 import { React, useState, useEffect, useMemo } from "react";
