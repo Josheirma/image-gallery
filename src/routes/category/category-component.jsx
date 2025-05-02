@@ -1,3 +1,4 @@
+//5/2/25 - Prettified, DONE
 import { React, useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { ART } from "../../assets/ART_DATA";
@@ -10,7 +11,7 @@ export default function Category() {
   let [showPanel, setShowPanel] = useState(false);
   const route = useParams();
   let imageCategoryToShow = route.category;
-  
+
   const [products, setProducts] = useState(() => {
     const storedValue = localStorage.getItem("products");
     return storedValue !== null ? JSON.parse(storedValue) : ART;
@@ -26,7 +27,6 @@ export default function Category() {
   let arrayWithStars = products.filter(
     (element) => element.amountStarsNumber !== 0
   );
-
 
   const updateStars = (id, amtStars) => {
     // Create a new array with the updated products

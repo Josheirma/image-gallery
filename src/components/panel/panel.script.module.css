@@ -1,46 +1,39 @@
-.ImageContainer{
-    width:100%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    
+.ImageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
-.PanelImage{
-    width:90%;
-    background-color: orange;
-    font-size: 2rem;
-    align-content: center;
-}
-
-.Text{
-    font-size: .8rem;
-    text-align: center;
+.PanelImage {
+  width: 90%;
+  background-color: orange;
+  font-size: 2rem;
+  align-content: center;
 }
 
-.OuterContainer{
-    display: flex;
-    justify-content: center;
-    align-content: center;
+.Text {
+  font-size: 0.8rem;
+  text-align: center;
 }
-.PanelContainer{
 
-height:350px;
-margin-top: 1rem;
-background-color: white;
-overflow-y: auto;
-width:15rem;
-margin-left: 10%;
-margin-right: 10%;
-margin-bottom: 3rem;
-border:2px solid black;
-
+.OuterContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.PanelContainer {
+  height: 350px;
+  margin-top: 1rem;
+  background-color: white;
+  overflow-y: auto;
+  width: 15rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 3rem;
+  border: 2px solid black;
 }
 
 @media (min-width: 1198px) {
-
-    .PanelContainer{
-        
-        
-    }
-
+  .PanelContainer {
+  }
 }
