@@ -1,11 +1,11 @@
-import { Outlet} from "react-router-dom";
-import { NavigationContainer} from "./navigation-styles";
-
+import { Outlet } from "react-router-dom";
+import "../../global.css";
+import { NavigationContainer } from "./navigation-styles";
 
 const Navigation = () => {
- return (
+  return (
     <NavigationContainer>
-       <Outlet />
+      <Outlet />
     </NavigationContainer>
   );
 };

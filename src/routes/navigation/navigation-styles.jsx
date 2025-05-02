@@ -21,8 +21,6 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const NavigationContainer = styled.div` 
+export const NavigationContainer = styled.div`
   font-size: 10px;
-  
 `;
-
