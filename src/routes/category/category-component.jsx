@@ -1,5 +1,5 @@
 //5/2/25 - Prettified, DONE
-import { React, useState, useEffect, useMemo } from "react";
+import { React, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { ART } from "../../assets/ART_DATA";
 import ArtPieceItem from "../../components/art-piece/art-piece-item.jsx";
