@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../global.css";
+import "../GalleryCard/GalleryCard.jsx";
 import styles from "./GalleryCard.module.css"
 
 export default function GalleryCard({ title, imageUrl, starsLabel, price, key }) {
