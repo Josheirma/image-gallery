@@ -1,6 +1,3 @@
-//////////////
-// 4000k center it, waiting on tutor, do I nees to rewrite category component as its own component - imageGallery.jsx?
-
 import { React, useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { ART } from "../../assets/ART_DATA";
@@ -13,15 +10,13 @@ export default function Category() {
   let [showPanel, setShowPanel] = useState(false);
   const route = useParams();
   let imageCategoryToShow = route.category;
-  //sets products to art, amountstars2 is zero, and string is none
-  //let [products, setProducts] = useState(ART);
-
+  
   const [products, setProducts] = useState(() => {
     const storedValue = localStorage.getItem("products");
     return storedValue !== null ? JSON.parse(storedValue) : ART;
   });
 
-  //MEMOIZE  - only if products or imagecate...
+  //MEMOIZE  - only if products or imageCategoryToShow changes
   let artPiecesOfCategoryArray = useMemo(() => {
     return products.filter(
       (element) => element.category === imageCategoryToShow
@@ -32,37 +27,6 @@ export default function Category() {
     (element) => element.amountStarsNumber !== 0
   );
 
-  //Old version, mutates...
-  // const updateStars = (id, amtStars) => {
-  //   let updatedarrayOfProducts = products.map((artPieces) => {
-  //     if (artPieces.id === id) {
-  //       if (artPieces.amountStarsNumber === amtStars) {
-  //         artPieces.amountStarsNumber = 0;
-  //         artPieces.amtstars = "none"
-  //       } else {
-  //         artPieces.amountStarsNumber = amtStars;
-  //        if(amtStars === 1){
-
-  //           artPieces.amtstars = "One Check"
-  //         }
-  //         if(amtStars === 2){
-  //           artPieces.amtstars = "Two Checks"
-  //         }
-  //         if(amtStars === 3){
-  //           artPieces.amtstars = "Three Checks"
-  //         }
-  //         if(amtStars === 4){
-  //           artPieces.amtstars = "Four Checks"
-  //         }
-  //       }
-
-  //     }
-  //     return(artPieces)
-  //   });
-  //   setProducts(updatedarrayOfProducts);
-
-  //     localStorage.setItem(`products`, JSON.stringify(updatedarrayOfProducts));
-  // };
 
   const updateStars = (id, amtStars) => {
     // Create a new array with the updated products
@@ -128,7 +92,6 @@ export default function Category() {
         <div className={styles.GridContainer}>
           <div className={styles.Grid}>
             {artPiecesOfCategoryArray.map((item, index) => (
-              //<ArtPieceItem onWidthChanged = {handleMessage} key = {index} item = {item} updateStars = {updateStars}/>
               <ArtPieceItem key={index} item={item} updateStars={updateStars} />
             ))}
           </div>

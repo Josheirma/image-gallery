@@ -2,30 +2,15 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import "../../global.css";
 import styles from "../art-piece/art-piece.module.css";
 
-//const ArtPieceItem = ({onWidthChanged, item, updateStars}) => {
 const ArtPieceItem = ({ item, updateStars }) => {
   const divRef = useRef(null);
-  //const [width, setWidth] = useState(0);
+  
 
   const sendWidth = (msg) => {
-    //onWidthChanged(msg);
+    
   };
 
-  useLayoutEffect(() => {
-    console.log("1");
-    sendWidth(divRef.current.offsetWidth);
-  });
-
-  useEffect(() => {
-    console.log("here");
-    // Attach the event listener
-    window.addEventListener("resize", sendWidth);
-
-    // Cleanup: Remove the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", sendWidth);
-    };
-  }, []);
+  
 
   return (
     <div className={styles.ComponentArtpiece}>

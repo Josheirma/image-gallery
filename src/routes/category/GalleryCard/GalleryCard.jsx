@@ -1,5 +1,5 @@
 import React from "react";
-//import styles from "./GalleryCard.module.css";
+
 import "../../global.css";
 import styles from "./GalleryCard.module.css"
 
