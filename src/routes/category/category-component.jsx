@@ -11,7 +11,7 @@ export default function Category() {
   let [showPanel, setShowPanel] = useState(false);
   
   // 'route' holds URL parameters from React Router.
-  // For example, in the URL /category/hats, route.category === "hats"
+  // For example, in the URL /category/artist1, route.category === "artist1"
   const route = useParams();
   
   // Each reroute causes the component to remount
