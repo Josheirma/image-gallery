@@ -6,11 +6,13 @@ import "../../global.css";
 import styles from "./panel.script.module.css";
 
 const Panel = ({ items }) => {
+  //gallery card is an image and text to be displayed in the drop-down panel
   return (
     <div className={styles.OuterContainer}>
       <div className={styles.PanelContainer}>
         {items &&
           items.map((item) => (
+            //seperate cards in panel
             <GalleryCard
               key={item.id}
               imageUrl={item.imageUrl}

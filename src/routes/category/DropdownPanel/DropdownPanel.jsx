@@ -9,6 +9,7 @@ export default function DropdownPanel({ showPanel, arrayWithStars }) {
   }
 
   return (
+    // Toggles element visibility with a slide up/down on button press
     <div className={styles.container}>
       <Panel items={arrayWithStars} />
     </div>

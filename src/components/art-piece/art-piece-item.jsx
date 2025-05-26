@@ -6,10 +6,7 @@ const ArtPieceItem = ({ item, updateStars }) => {
   const divRef = useRef(null);
   
 
-  const sendWidth = (msg) => {
-    
-  };
-
+  
   
 
   return (
@@ -26,9 +23,10 @@ const ArtPieceItem = ({ item, updateStars }) => {
               alt="Artwork"
             />
           </div>
-    
+           {/*check boxes work like a star rating */}
           <div className={styles.InputContainer}>
             <input
+            //check the box if there are enough checks
               checked={item.amountStarsNumber >= 1}
               type={`checkbox`}
               onChange={() => updateStars(item.id, 1)}
