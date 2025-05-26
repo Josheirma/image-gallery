@@ -26,7 +26,7 @@ const ArtPieceItem = ({ item, updateStars }) => {
               alt="Artwork"
             />
           </div>
-
+    
           <div className={styles.InputContainer}>
             <input
               checked={item.amountStarsNumber >= 1}
