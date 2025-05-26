@@ -22,5 +22,5 @@ export const NavLink = styled(Link)`
 `;
 
 export const NavigationContainer = styled.div`
-  font-size: 10px;
+  font-size: 100px;
 `;

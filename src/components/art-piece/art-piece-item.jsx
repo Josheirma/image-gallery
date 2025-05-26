@@ -6,10 +6,7 @@ const ArtPieceItem = ({ item, updateStars }) => {
   const divRef = useRef(null);
   
 
-  const sendWidth = (msg) => {
-    
-  };
-
+  
   
 
   return (
@@ -26,9 +23,10 @@ const ArtPieceItem = ({ item, updateStars }) => {
               alt="Artwork"
             />
           </div>
-    
+           {/*Checkboxes styled and behave like a star rating system*/}
           <div className={styles.InputContainer}>
             <input
+            // If the variable is greater than or equal to the required number of checks, update the checkboxes
               checked={item.amountStarsNumber >= 1}
               type={`checkbox`}
               onChange={() => updateStars(item.id, 1)}
