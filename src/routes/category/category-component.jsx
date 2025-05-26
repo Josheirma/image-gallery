@@ -9,44 +9,44 @@ import styles from "../../routes/category/category-component.module.css";
 
 export default function Category() {
   let [showPanel, setShowPanel] = useState(false);
-  // 'route' is an object from React Router containing URL parameters.
-  // In this case, it holds the 'category' value from the URL path like: /category/:category
-  // For example, if the URL is /category/hats, then route.category === "hats"
-
+  
+  // 'route' holds URL parameters from React Router.
+  // For example, in the URL /category/hats, route.category === "hats"
   const route = useParams();
-  //every time there is a reroute, remounting occurs
+  
+  // Each reroute causes the component to remount
   let imageCategoryToShow = route.category;
 
   const [products, setProducts] = useState(() => {
     const storedValue = localStorage.getItem("products");
-    //intialize products with ART (default value) array of objects if the value is null, otherwise get the entire array from localstorage.  Localstorage has the value amtstars, which can be changed.
+    // Initialize products from localStorage if it exists;
+    // otherwise, use the default ART array. LocalStorage can hold rating data like amtstars.
     return storedValue !== null ? JSON.parse(storedValue) : ART;
   });
 
-  //MEMOIZE  - only if products or imageCategoryToShow changes
+  // MEMOIZED: Recalculates only when products or imageCategoryToShow changes
   let artPiecesOfCategoryArray = useMemo(() => {
     return products.filter(
-      // Filter a new array (non-mutating) to include only items matching the route param.  Remounted when using react router.  Memoize works by only doing internals if oner of the two dependencies is changed.
+      // Return a new array with only the items matching the selected category
       (element) => element.category === imageCategoryToShow
     );
   }, [products, imageCategoryToShow]);
 
-  //created to pass to panel, below.  Just stars!
+  // Used to pass only starred items to the Panel component
   let arrayWithStars = products.filter(
     (element) => element.amountStarsNumber !== 0
   );
 
   const updateStars = (id, amtStars) => {
-    // Create a single-item array that holds the entire arrray of objects
-   // artPiece is in scope for the entire function body
+    // Create a new array with updated rating for a single item
     const updatedArrayOfProducts = products.map((artPiece) => {
-      if (artPiece.id !== id) return artPiece; // Return unchanged item if not the target
+      if (artPiece.id !== id) return artPiece; // Keep items unchanged unless ID matches
 
-      // If the amountStarsNumber is the same as amtStars, reset to 0 (like toggle)
+      // Toggle: If same star value is selected again, reset to 0
       const isSame = artPiece.amountStarsNumber === amtStars;
       const newAmountStarsNumber = isSame ? 0 : amtStars;
 
-      // Map numeric stars to string labels
+      // Maps numeric ratings to string labels
       const starsLabelMap = {
         0: "none",
         1: "One Check",
@@ -55,25 +55,18 @@ export default function Category() {
         4: "Four Checks",
       };
 
-      // Return a new object (avoid mutation)
-      //creates a single valued array that has objects
-      return {//artPiece is an element of the entire array and is kept.  It updates the amountStarsNumber, and starsLabelMap over top the element, too.
-       
+      // Return a new object with updated rating fields
+      return {
         ...artPiece,
-        //number stars
         amountStarsNumber: newAmountStarsNumber,
-        // Sets a string containing the text representation of stars
-        // Update amtstars
-        amtstars: starsLabelMap[newAmountStarsNumber], 
+        amtstars: starsLabelMap[newAmountStarsNumber], // Human-readable label
       };
     });
 
-   //!
-    // Use state for speed (faster than localStorage get), but it resets on page reload or route change.
-   
+    // Update component state for immediate UI reflection (faster than localStorage)
     setProducts(updatedArrayOfProducts);
 
-    //Update localStorage, in case there is a reroute, and products has been reset.
+    // Persist updated ratings across reloads or navigation
     localStorage.setItem("products", JSON.stringify(updatedArrayOfProducts));
   };
 
@@ -102,15 +95,13 @@ export default function Category() {
         </div>
 
         <div className={styles.UpperGrid}>
-          {/*// Updates on every reroute; contains products that have stars (amountStarsNumber !== 0)*/}
-          
+          {/* Updates on every reroute; shows only artworks with star ratings */}
           {showPanel && <Panel items={arrayWithStars} />}
         </div>
 
         <div className={styles.GridContainer}>
           <div className={styles.Grid}>
-            {/*@ // Using the route's category type, display all artworks in that category (filtered at the top) */}
-          
+            {/* Displays all artworks in the current category */}
             {artPiecesOfCategoryArray.map((item, index) => (
               <ArtPieceItem key={index} item={item} updateStars={updateStars} />
             ))}
@@ -119,4 +110,4 @@ export default function Category() {
       </div>
     </div>
   );
-}
+}difftool
