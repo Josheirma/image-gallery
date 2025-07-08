@@ -1,4 +1,4 @@
-//5/2/25 - Prettified, DONE//
+//5/2/25 - Prettified, DONE///
 import { React, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { ART } from "../../assets/ART_DATA";
